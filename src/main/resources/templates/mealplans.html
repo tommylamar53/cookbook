@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Meal Plans</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h1>My Meal Plans</h1>
+
+<a th:href="@{/mealplans/new}">➕ Add Meal Plan</a>
+
+<ul>
+    <li th:each="mp : ${mealPlans}">
+        <strong th:text="${mp.name}">Meal Plan</strong>
+        <p th:text="${mp.description}"></p>
+
+        <a th:href="@{/mealplans/{id}/recipes(id=${mp.id})}">
+            View Recipes
+        </a>
+    </li>
+</ul>
+
+<a th:href="@{/dashboard}">⬅ Back</a>
+
+</body>
+</html>

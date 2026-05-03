@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Recipes</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h2>Recipes</h2>
+
+<ul>
+    <li th:each="r : ${recipes}">
+        <h3 th:text="${r.name}"></h3>
+
+        <p><strong>Ingredients:</strong></p>
+        <p th:text="${r.ingredients}"></p>
+
+        <p><strong>Instructions:</strong></p>
+        <p th:text="${r.instructions}"></p>
+
+        <img th:if="${r.imageLink != null}" th:src="${r.imageLink}" width="250">
+
+        <br><br>
+
+        ✏️ <a th:href="@{/recipes/{id}/edit(id=${r.id})}">Edit</a>
+
+        <form th:action="@{/recipes/{id}/delete(id=${r.id})}"
+              method="post"
+              style="display:inline;">
+            <button type="submit">🗑 Delete</button>
+        </form>
+
+        <hr>
+    </li>
+</ul>
+
+<a th:href="@{/dashboard}">⬅ Back</a>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Recipe</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h2>Edit Recipe</h2>
+
+<form th:action="@{/recipes/{id}/edit(id=${recipe.id})}"
+      th:object="${recipe}"
+      method="post">
+
+    <label>Name</label><br>
+    <input type="text" th:field="*{name}" required><br><br>
+
+    <label>Ingredients</label><br>
+    <textarea th:field="*{ingredients}" rows="5" required></textarea><br><br>
+
+    <label>Instructions</label><br>
+    <textarea th:field="*{instructions}" rows="6" required></textarea><br><br>
+
+    <label>Image Link</label><br>
+    <input type="text" th:field="*{imageLink}"><br><br>
+
+    <button type="submit">💾 Save Changes</button>
+</form>
+
+<br>
+
+<a th:href="@{/mealplans/{id}/recipes(id=${mealPlan.id})}">
+    ⬅ Back to Recipes
+</a>
+
+</body>
+</html>

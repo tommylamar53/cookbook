@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Meal Plans</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h1>Welcome, <span th:text="${user.username}">User</span></h1>
+
+<a th:href="@{/mealplans/new}">➕ Add Meal Plan</a>
+
+<ul>
+    <li th:each="mp : ${mealPlans}">
+        <strong th:text="${mp.name}">Meal Plan</strong>
+        <a th:href="@{/mealplans/{id}/recipes(id=${mp.id})}">
+            View Recipes
+        </a>
+        <a th:href="@{/mealplans/{id}/add-recipe(id=${mp.id})}">
+            ➕ Add Recipe
+        </a>
+    </li>
+</ul>
+
+<form th:action="@{/logout}" method="post">
+    <button>Logout</button>
+</form>
+
+</body>
+</html>
